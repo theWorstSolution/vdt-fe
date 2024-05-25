@@ -25,7 +25,9 @@ export default function StudentList() {
                     <button onClick={()=>{
                         fetch(apiHost + '/students/' +student._id,{method:'DELETE'}).then((res) => {
                             alert('deleted')
-                            students.slice(idx,1)
+                            const newStudents = [...students]
+                            newStudents.splice(idx,1)
+                            setStudents(newStudents)
                         })
                     }}>Delete</button>
                 </td>    
