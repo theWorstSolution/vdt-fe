@@ -18,7 +18,19 @@ export default function EditStudent() {
     },[])
 
     const onSubmit = useCallback((e) => {
-        
+        e.preventDefault()
+        console.log('hehehehehehe');
+        console.log(inputs);
+        fetch(apiHost + '/students/'+studentId, {
+            method: 'PATCH', 
+            headers: {
+                'Content-Type': 'application/json', // Set the headers
+            }, 
+            body: JSON.stringify(inputs)
+        }).then((res) => {
+            console.log(res);
+            alert('edited')
+        })
     },[inputs])
     return (<form onSubmit={onSubmit}>
         <label>Name</label>
