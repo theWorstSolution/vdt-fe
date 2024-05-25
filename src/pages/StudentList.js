@@ -22,7 +22,12 @@ export default function StudentList() {
                 <td>{student.school}</td>
                 <td>
                     <Link to={'/students/'+student._id}><button>Edit</button></Link>
-                    
+                    <button onClick={()=>{
+                        fetch(apiHost + '/students/' +student._id,{method:'DELETE'}).then((res) => {
+                            alert('deleted')
+                            students.slice(idx,1)
+                        })
+                    }}>Delete</button>
                 </td>    
             </tr>)}</tbody>
         </table>
