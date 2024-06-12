@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { apiHost } from "../config";
+import axiosInstance from "../axiosInstance";
 
 
 export default function CreateStudent() {
@@ -13,12 +14,10 @@ export default function CreateStudent() {
     return (<form onSubmit={(e) => {
         e.preventDefault()
         console.log(inputs);
-        fetch(apiHost + '/students', {
-            method: 'POST', 
-            headers: {
-                'Content-Type': 'application/json', // Set the headers
-            }, 
-            body: JSON.stringify(inputs)
+        axiosInstance({
+            method: 'POST',
+            url: apiHost + '/students',
+            data: inputs
         }).then((res) => {
             console.log(res);
             alert('created')

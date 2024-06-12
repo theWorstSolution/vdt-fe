@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { apiHost } from "../config";
 import { useParams } from "react-router-dom";
+import axiosInstance from "../axiosInstance";
 
 
 export default function EditStudent() {
@@ -12,21 +13,20 @@ export default function EditStudent() {
         setInputs(values => ({ ...values, [name]: value }))
     }
     useEffect(() => {
-        fetch(apiHost + '/students/'+studentId).then((res) => {
-            return res.json()
-        }).then((data)=>{setInputs(data)})
+        axiosInstance({
+            method: 'GET',
+            url: apiHost + '/students/'+studentId
+        }).then(({data})=>{setInputs(data)})
     },[])
 
     const onSubmit = useCallback((e) => {
         e.preventDefault()
         console.log('hehehehehehe');
         console.log(inputs);
-        fetch(apiHost + '/students/'+studentId, {
-            method: 'PATCH', 
-            headers: {
-                'Content-Type': 'application/json', // Set the headers
-            }, 
-            body: JSON.stringify(inputs)
+        axiosInstance({
+            method: 'PATCH',
+            url: apiHost + '/students/'+studentId,
+            data: inputs
         }).then((res) => {
             console.log(res);
             alert('edited')
