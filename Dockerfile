@@ -40,7 +40,7 @@ RUN rm -rf ./*
 COPY --from=build /app/build .
 
 # Expose port 80 to allow external access
-EXPOSE 80
+EXPOSE 3000
 
 # Command to run Nginx and serve the React app
 CMD ["nginx", "-g", "daemon off;"]
