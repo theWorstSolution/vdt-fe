@@ -22,6 +22,10 @@ RUN npm run build
 # Stage 2: Serve React app with Nginx
 FROM nginx:latest
 
+# drop symlinks
+RUN unlink /var/log/nginx/access.log
+RUN unlink /var/log/nginx/error.log
+
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
