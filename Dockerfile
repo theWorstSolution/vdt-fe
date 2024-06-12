@@ -23,10 +23,10 @@ RUN npm run build
 FROM nginx:latest
 
 # drop symlinks
-RUN unlink /var/log/nginx/access.log
-RUN unlink /var/log/nginx/error.log
-RUN mkdir -p /var/log/nginx && touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
-RUN chown -R www-data:www-data /var/log/nginx
+# RUN unlink /var/log/nginx/access.log
+# RUN unlink /var/log/nginx/error.log
+# RUN mkdir -p /var/log/nginx && touch /var/log/nginx/access.log && touch /var/log/nginx/error.log
+# RUN chown -R www-data:www-data /var/log/nginx
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/nginx.conf
 
