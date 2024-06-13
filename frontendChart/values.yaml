@@ -1,0 +1,11 @@
+# Define default values for customization
+appVersion: 0.2.2
+replicas: 1
+prefix: react-frontend
+image:
+  name: agrainofsand/react-frontend
+service:
+  type: NodePort  # Adjust service type (e.g. NodePort) if needed
+configMap:
+  PORT: 3000  # backend listening port
+  HAPROXY_PORT: 443
